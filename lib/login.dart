@@ -62,7 +62,7 @@ class _LoginState extends State<Login> {TextEditingController emailController = 
 
               SizedBox(height: 40),
               ElevatedButton(
-                onPressed: () {login(email: emailController.text, password: passwordController.text, context: context)
+                onPressed: () {login(email: emailController.text, password: passwordController.text, context: context);
                   Navigator.push(context, MaterialPageRoute(builder: (context) => Signup(),));
                 },
                 style: ElevatedButton.styleFrom(

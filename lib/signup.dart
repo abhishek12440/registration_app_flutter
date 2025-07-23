@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:fsignup/login.dart';
+import 'package:fsignup/services.dart';
 
-class Signup extends StatelessWidget {
+class Signup extends StatefulWidget {
   const Signup({super.key});
 
+  @override
+  State<Signup> createState() => _SignupState();
+}
+
+class _SignupState extends State<Signup> {
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +39,7 @@ class Signup extends StatelessWidget {
 
               SizedBox(height: 2),
               TextField(
+                controller: usernameController,
                 decoration: InputDecoration(border: OutlineInputBorder()),
               ),
 
@@ -40,6 +52,7 @@ class Signup extends StatelessWidget {
               SizedBox(height: 2),
 
               TextField(
+                controller: emailController,
                 decoration: InputDecoration(border: OutlineInputBorder()),
               ),
               SizedBox(height: 1),
@@ -50,6 +63,7 @@ class Signup extends StatelessWidget {
 
               SizedBox(height: 2),
               TextField(
+                controller: passwordController,
                 decoration: InputDecoration(border: OutlineInputBorder()),
               ),
 
@@ -63,11 +77,20 @@ class Signup extends StatelessWidget {
 
               SizedBox(height: 2),
               TextField(
+                controller: confirmPasswordController,
                 decoration: InputDecoration(border: OutlineInputBorder()),
               ),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  signup(
+                    username: usernameController.text,
+                    email: emailController.text,
+                    password: passwordController.text,
+                    confirmpassword: confirmPasswordController.text,
+                    context: context,
+                  );
+                },
                 child: Align(
                   child: Text(
                     "Signup",
@@ -75,32 +98,33 @@ class Signup extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 20),Row(mainAxisAlignment: MainAxisAlignment.center,children: [
-              Text("Already have an account?"),
-              SizedBox(width: 5),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Signup()),
-                  );
-                },
-                child: Text(
-                  'login',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                        ),
-                      ],
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Already have an account?"),
+                  SizedBox(width: 5),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Login()),
+                      );
+                    },
+                    child: Text(
+                      'login',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
+                  ),
+                ],
+              ),
             ],
-                ),
-                      
-                    ),
-                  ),
-                );
-               
-            }
-          }
+          ),
+        ),
+      ),
+    );
+  }
+}
