@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:fsignup/forgotpassword.dart';
+import 'package:fsignup/services.dart';
 import 'package:fsignup/signup.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({super.key});
 
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +36,7 @@ class Login extends StatelessWidget {
               ),
 
               SizedBox(height: 2),
-              TextField(
+              TextField(controller: emailController,
                 decoration: InputDecoration(border: OutlineInputBorder()),
               ),
 
@@ -37,13 +45,24 @@ class Login extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: Text("Password", style: TextStyle(color: Colors.black)),
               ),
-              TextField(
+              TextField(controller: passwordController,
                 decoration: InputDecoration(border: OutlineInputBorder()),
               ),
+               SizedBox(width: 5,),
+               GestureDetector(
+                 onTap: () {
+                   Navigator.push(context, MaterialPageRoute(builder: (context) => Forgotpassword()));
+                 },
+                 child:Align(alignment: Alignment.topRight,
+                   child: Text(
+                     'forgot password?',
+                     style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                   ),
+                 ),),
 
               SizedBox(height: 40),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () {login(email: emailController.text, password: passwordController.text, context: context)
                   Navigator.push(context, MaterialPageRoute(builder: (context) => Signup(),));
                 },
                 style: ElevatedButton.styleFrom(
