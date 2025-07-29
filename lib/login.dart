@@ -66,7 +66,7 @@ class _LoginState extends State<Login> {TextEditingController emailController = 
                   Navigator.push(context, MaterialPageRoute(builder: (context) => Signup(),));
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: const Color.fromARGB(255, 37, 101, 154),
                   foregroundColor: Colors.white,
                 ),
                 child: Align(
